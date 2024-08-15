@@ -1,3 +1,94 @@
+下载 O'reilly 电子书
+
+非鱼知乐
+IP属地: 广西
+2024.05.11 23:46:16
+字数 359
+阅读 133
+https://xingyys.tech/%E4%B8%8B%E8%BD%BDoreilly%E7%94%B5%E5%AD%90%E4%B9%A6/
+
+1. 安装
+首先下载 safaribooks 工具。
+
+$ git clone https://github.com/lorenzodifuccia/safaribooks.git
+Cloning into 'safaribooks'...
+
+$ cd safaribooks/
+$ pip3 install -r requirements.txt
+OR
+
+$ pipenv install && pipenv shell
+2. 使用
+帐号密码下载
+独立（非关联） O'Reilly 帐号适用
+
+python3 safaribooks.py --cred "account_mail@mail.com:password01" XXXXXXXXXXXXX
+其中 XXXXXXXXXXXXX 表示电子书的 ID。例如电子书页面 https://learning.oreilly.com/videos/python-fundamentals/9780135917411/ 的 ID 就是 9780135917411。
+
+使用本地 cookies.json 文件下载
+O’Reilly 账号为公司关联账号适用
+
+下载
+先在浏览器中登录 O’Reilly 页面，转到这个首页 https://learning.oreilly.com/profile/。
+
+打开浏览器的开发者模式。Chrome 下点击右上三点，选择More tools -> Developer tools，选择Console栏。
+
+在 Console 下执行命令:
+
+javascript:(function(){var output = {};document.cookie.split(/\s*;\s*/).forEach(function(pair) {pair = pair.split(/\s*=\s*/);output[pair[0]]=pair.splice(1).join('=');});console.log(JSON.stringify(output));})();
+将输出的信息保存到 safaribooks 目录下的 cookies.json 文件中。
+
+执行以下命令下载电子书：
+
+python3 safaribooks.py  XXXXXXXXXXXXX
+输出结果为:
+
+                                                                                
+ ██████╗     ██████╗ ██╗  ██╗   ██╗██████╗
+██╔═══██╗    ██╔══██╗██║  ╚██╗ ██╔╝╚════██╗
+██║   ██║    ██████╔╝██║   ╚████╔╝   ▄███╔╝
+██║   ██║    ██╔══██╗██║    ╚██╔╝    ▀▀══╝
+╚██████╔╝    ██║  ██║███████╗██║     ██╗
+ ╚═════╝     ╚═╝  ╚═╝╚══════╝╚═╝     ╚═╝
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+[-] Successfully authenticated.                                                 
+[*] Retrieving book info...                                                     
+[-] Title: A Tour of C++, 3rd Edition                                           
+[-] Authors: Bjarne Stroustrup                                                  
+[-] Identifier: 9780136823575                                                   
+[-] ISBN: 9780136823575                                                         
+[-] Publishers: Addison-Wesley Professional                                     
+[-] Rights:                                                                     
+[-] Description: In A Tour of C++, Third Edition, Bjarne Stroustrup provides an overview of ISO C++, C++20, that aims to give experienced programmers a clear understanding of what constitutes modern C++. Featuring carefully crafted examples and practical help in getting started, this revised and updated edition concisely covers most major language features and the major standard-library components needed for effective use.Stroustrup presents C++ features in the context of the programming styles they support, suc...
+[-] Release Date: 2022-09-30                                                    
+[-] URL: https://learning.oreilly.com/library/view/a-tour-of/9780136823575/     
+[*] Retrieving book chapters...                                                 
+[*] Output directory:                                                           
+    /home/liji/git/safaribooks/Books/A Tour of C__ 3rd Edition (9780136823575)
+[-] Downloading book contents... (48 chapters)                                  
+    [#####################################################################] 100%
+[-] Downloading book CSSs... (1 files)                                          
+    [#####################################################################] 100%
+[-] Downloading book images... (596 files)                                      
+    [#####################################################################] 100%
+[-] Creating EPUB file...                                                       
+[*] Done: /home/liji/git/safaribooks/Books/A Tour of C__ 3rd Edition (9780136823575)/9780136823575.epub
+
+    If you like it, please * this project on GitHub to make it known:
+        https://github.com/lorenzodifuccia/safaribooks
+    e don't forget to renew your Safari Books Online subscription:
+        https://learning.oreilly.com
+
+[!] Bye!!
+3. 格式转化
+下载的电子书为 epub 格式，如果需要其他格式时，可以借用 calibre 工具来转化。
+
+4. 著名出版商 O’Reilly 推出免费计算机类电子书
+https://bookfere.com/post/453.html
+
+
+
 # SafariBooks
 Download and generate *EPUB* of your favorite books from [*Safari Books Online*](https://www.safaribooksonline.com) library.  
 I'm not responsible for the use of this program, this is only for *personal* and *educational* purpose.  
